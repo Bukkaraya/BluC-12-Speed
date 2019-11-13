@@ -9,3 +9,4 @@ Resources
 4. L293D motor driver tutorial: https://www.youtube.com/watch?v=VQmxU7CV9bM
 5. Adafruit-motor-shield library V1: https://github.com/adafruit/Adafruit-Motor-Shield-library
 6. Adafruit-motor-shield library V2: https://github.com/adafruit/Adafruit_Motor_Shield_V2_Library
+7. Adafruit Bluetooth: https://howtomechatronics.com/tutorials/arduino/arduino-and-hc-05-bluetooth-module-tutorial/
