@@ -1,4 +1,4 @@
-# XeeC 11 Range +
+# BluC 12 Speed +
 
 Resources
 
