@@ -9,18 +9,31 @@ int x_value, y_value;
 void setup()
 {
   Serial.begin(38400);
-  pinMode(x_pin,INPUT);//accelerometer input
+  //accelerometer input
+  pinMode(x_pin,INPUT);
   pinMode(y_pin,INPUT);
 }
 
 void loop()
 {
   x_value = analogRead(x_pin); //analog reading accelerometer values
-  delay(2000);
   y_value = analogRead(y_pin);
-  Serial.print(".");
-  Serial.println(x_value);
-  Serial.print("!");
-  Serial.println(y_value);
+  sendPacket(x_value, y_value);
   delay(2000);//delay of 2 seconds
+}
+
+
+void sendPacket(int x, int y) {
+     // Start Delimiter is .
+     Serial.write(".");
+     // Send x
+     Serial.print("x");
+     Serial.print(x);
+     Serial.print(",");
+     // Send y
+     Serial.print("y");
+     Serial.print(y);
+     Serial.print(",");
+     // End Delimiter is !
+     Serial.write("!"); 
 }
