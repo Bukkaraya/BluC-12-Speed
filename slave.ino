@@ -1,3 +1,10 @@
+#include <AFMotor.h>
+
+AF_DCMotor motor1(1);
+AF_DCMotor motor2(2);
+AF_DCMotor motor3(3);
+AF_DCMotor motor4(4);
+
 enum directions {
   STRAIGHT,
   REVERSE,
@@ -30,7 +37,22 @@ int carSpeed = 200;
 
 void setup() {
   Serial.begin(38400);
+  
+  motor1.setSpeed(200);
+  motor1.run(RELEASE);
+
+  motor2.setSpeed(200);
+  motor2.run(RELEASE);
+  
+  motor3.setSpeed(200);
+  motor3.run(RELEASE);
+
+  motor4.setSpeed(200);
+  motor4.run(RELEASE);
+
 }
+
+
 
 
 
@@ -91,26 +113,30 @@ void moveCar(directions carDirection, int carSpeed) {
   switch(carDirection) {
     case STRAIGHT:
       Serial.println("Move car forward");
+      car_move_forward();
       break;
     case REVERSE:
       Serial.println("Move car reverse");
+      car_move_backward();
       break;
     case RIGHT:
       Serial.println("Move car right");
+      right_turn();
       break;
     case LEFT:
       Serial.println("Move car left");
+      left_turn();
       break;
     case STILL:
+      Serial.println("Stay still");
     default:
+      car_stay_still();
       Serial.println("NOP");
       break;
   }
 
-  // Do this for 200ms and then stop
-    // car motion
-    // Stop car motion here
-  delay(50);
+  delay(1000);
+  car_stay_still();
     
 }
 
@@ -141,4 +167,46 @@ void readPacket() {
   Serial.println(x_value);
   Serial.print("Y Value:");
   Serial.println(y_value);
+}
+
+void car_stay_still()
+{
+  motor1.run(RELEASE);
+  motor2.run(RELEASE);
+  motor3.run(RELEASE);
+  motor4.run(RELEASE);
+}
+
+void car_move_forward()
+{
+  motor1.run(FORWARD);
+  motor2.run(FORWARD);
+  motor3.run(FORWARD); 
+  motor4.run(FORWARD);
+
+
+}
+
+void car_move_backward()
+{
+  motor1.run(BACKWARD);
+  motor2.run(BACKWARD);
+  motor3.run(BACKWARD); 
+  motor4.run(BACKWARD);
+}
+
+void left_turn() 
+{ 
+  motor1.run(RELEASE);
+  motor3.run(RELEASE);
+  motor2.run(FORWARD);
+  motor4.run(FORWARD);
+}
+
+void right_turn() 
+{ 
+  motor1.run(FORWARD);
+  motor3.run(FORWARD);
+  motor2.run(RELEASE);
+  motor4.run(RELEASE);
 }
