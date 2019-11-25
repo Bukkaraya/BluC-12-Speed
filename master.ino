@@ -19,7 +19,7 @@ void loop()
   x_value = analogRead(x_pin); //analog reading accelerometer values
   y_value = analogRead(y_pin);
   sendPacket(x_value, y_value);
-  delay(2000);//delay of 2 seconds
+  delay(500);
 }
 
 
