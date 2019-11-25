@@ -135,9 +135,7 @@ void moveCar(directions carDirection, int carSpeed) {
       break;
   }
 
-  delay(1000);
-  car_stay_still();
-    
+  delay(50);  
 }
 
 
